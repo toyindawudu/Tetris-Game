@@ -51,11 +51,45 @@ const iTetromino = [
 const theTetrominoes = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
 
 // Establish the starting position of the Tetrominoes
+let currentPosition = 4;
+let currentRotation = 0;
 
+// Randomly select a Tetromino
+let random = Math.floor(Math.random() *theTetrominoes.length);
 // Assign a Tetromino shape to a variable
+let current = theTetrominoes[random][currentRotation];
 
 
-// Create a function that draws the first rotation in the first tetromino
+// Functions
+
+// Draw the Tetromino
+function draw(){
+  current.forEach(index => { // you can name 'index' anything and JavaScript will know you mean the items in the array
+    squares[currentPosition + index].classList.add('tetromino');
+  })
+}
+
+// Undraw function
+function undraw(){
+  current.forEach(index => {
+    squares[currentPosition + index].classList.remove('tetromino');
+  })
+}
+
+
+// Move the Tetromino down every single
+timeId = setInterval(moveDown, 1000);
+ 
+function moveDown(){
+  undraw();
+  currentPosition = currentPosition + width;
+  draw()
+}
+
+
+
+
+
 
 
 
