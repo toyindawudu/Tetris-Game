@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
  const width = 10;
  const height = 0;
 
-
 // The Tetrominoes
 
 const lTetromino = [
@@ -47,36 +46,35 @@ const iTetromino = [
   [width,width+1,width+2,width+3]
 ]
 
-
 const theTetrominoes = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
+
+// console.log(theTetrominoes);
 
 // Establish the starting position of the Tetrominoes
 let currentPosition = 4;
-let currentRotation = 0;
+let currentRotation = 0; // This is the first  
 
 // Randomly select a Tetromino
-let random = Math.floor(Math.random() * theTetrominoes.length);
-// Assign a Tetromino shape to a variable
-let current = theTetrominoes[random][currentRotation];
-
+let random = Math.floor(Math.random() * theTetrominoes.length); // Randomly select a tetronomino from the selection of tetromino
+let current = theTetrominoes[random][currentRotation]; // Assign a Tetromino shape to a variable
 
 // Functions
 
 // Draw the Tetromino
 function draw(){
   current.forEach(index => { // you can name 'index' anything and JavaScript will know you mean the items in the array
-    squares[currentPosition + index].classList.add('tetromino');
+    squares[currentPosition + index].classList.add('tetromino'); // squares are attached to the div tags in the html 
   })
-}
+} 
 
-// Undraw function
+// Undraw function - this undrawns the tetrominoes in the grid
 function undraw(){
   current.forEach(index => {
     squares[currentPosition + index].classList.remove('tetromino');
   })
 }
 
-// Freeze function
+// Freeze function - this stops the tetronminoes when they get in contact with one another 
 function freeze(){
   if(current.some(index => squares[currentPosition + index + width].classList.contains('taken'))){
     current.forEach(index => squares[currentPosition + index].classList.add('taken'));
@@ -84,21 +82,43 @@ function freeze(){
     random = Math.floor(Math.random() * theTetrominoes.length);
     current = theTetrominoes[random][currentRotation];
     currentPosition = 4;
-    draw();
+    draw();  
+  }
+} 
+
+// Move the Tetromino down every single second
+timeId = setInterval(moveDown, 1000);
+
+//assign functions to keyCodes
+
+function control(e) {
+  if(e.keyCode === 37){
+    moveLeft()
   }
 }
+document.addEventListener('keyup', control);
 
-// Move the Tetromino down every single
-timeId = setInterval(moveDown, 1000);
- 
+// move down function  - this moves the tetrominoes down the grid based on the width
 function moveDown(){
   undraw();
   currentPosition = currentPosition + width;
-  draw()
+  draw();
   freeze();
 }
 
+// move left function, 
+function moveLeft(){
+  undraw();
+  const isAtLeftEdge = current.some(index => (currentPosition + index) % width === 0);
 
+  if(!isAtLeftEdge) currentPosition -= 1;
+  if(current.some(index => squares[currentPosition + index ].classList.contains)('taken')){
+    currentPosition += 1;
+  }
+  draw();
+}  
+
+// move right function
 
 
 }); // This fires of this line of code when the page is loading 
