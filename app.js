@@ -94,6 +94,12 @@ timeId = setInterval(moveDown, 1000);
 function control(e) {
   if(e.keyCode === 37){
     moveLeft()
+  } else if (e.keyCode === 38) {
+    // rotate 
+  } else if (e.keyCode === 39) {
+    moveRight();
+  } else if (e.keyCode === 40) {
+    // moveDown 
   }
 }
 document.addEventListener('keyup', control);
@@ -101,7 +107,7 @@ document.addEventListener('keyup', control);
 // move down function  - this moves the tetrominoes down the grid based on the width
 function moveDown(){
   undraw();
-  currentPosition = currentPosition + width;
+  currentPosition += width;
   draw();
   freeze();
 }
@@ -113,12 +119,25 @@ function moveLeft(){
 
   if(!isAtLeftEdge) currentPosition -= 1;
   if(current.some(index => squares[currentPosition + index ].classList.contains)('taken')){
-    currentPosition += 1;
+    currentPosition += 1; 
   }
   draw();
 }  
 
 // move right function
+function moveRight(){
+  undraw();
+  const isAtRightEdge = current.some(index => (currentPosition + index) % width === width -1);
+  if(!isAtRightEdge) currentPosition += 1;
+  if(current.some(index => squares[currentPosition + index].classList.contains('taken'))){
+    currentPosition -= 1;
+  }
+  draw();
+}
 
+// rotate the tetromino
+ function rotate(){
+   undraw();
+ }
 
 }); // This fires of this line of code when the page is loading 
