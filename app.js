@@ -48,6 +48,9 @@ const iTetromino = [
 
 const theTetrominoes = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
 
+// write a function that gives each tetromino different colours
+
+
 // console.log(theTetrominoes);
 
 // Establish the starting position of the Tetrominoes
@@ -147,4 +150,4 @@ function moveRight(){
 
  }
 
-}); // This fires of this line of code when the page is loading 
+}); // This fires of this line of code when the page is loading   
