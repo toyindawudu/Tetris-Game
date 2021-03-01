@@ -16,6 +16,11 @@
   margin-bottom: 20px;
 }
 
+.container-game {
+  display: flex;
+  width: 300px;
+  margin: auto;
+}
 /* Class Lists*/
 .tetromino {
   background-color: green;

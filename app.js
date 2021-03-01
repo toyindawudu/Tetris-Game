@@ -148,6 +148,9 @@ function moveRight(){
    current = theTetrominoes[random][currentRotation];
    draw();
 
+
+   // show next up tetronimo in mini-grid display
+
  }
 
 }); // This fires of this line of code when the page is loading   
